@@ -7,6 +7,7 @@ const express = require('express')
 const app = express()
 const expressLayout = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 //routers
 const indexRouter = require('./routes/index')
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views') //where are the views coming from. This is a folder
 app.set('layout', 'layouts/layout') //hookup express layouts, what are layouts going to be
 app.use(expressLayout)
+app.use(methodOverride('_method'))
 app.use(express.static('public')) //where are our files public to be. This is a folder
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
